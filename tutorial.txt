@@ -1,0 +1,36 @@
+Multiplayer Roguelike Tutorial - Python, libtcod, websockets
+
+While many say that roguelikes are an inherently single player game genre, I can never help but think "How fun this would be to play with my friends" when I play games such as Dwarf Fortress or Cataclysm:DDA. That is why when I decided to finally try and make my own roguelike, I wanted to make sure it had multiplayer support out of the box (or fresh off the download idk). The only issue is that I had no previous network programming experience, so to learn I decided to try and add multiplayer to the final product of the 2020 Python 3 roguelike tutorial by TStand90 and HexDecimal. My first attempt at doing this was succesful but very messy, eventually I got distracted and left the project to collect dust. Recently I've decided to refocus on creating my own roguelike, so I am reimplementing multiplayer again, but this time much cleaner (hopefully), and also I am documenting the process along the way, for those of you who are also curious how to add multiplayer to a roguelike.
+
+
+
+
+LETS GET STARTED
+
+First let's just run the code in the original repository, and make sure it works.
+Oops !! The first two times I ran it I had missing dependencies cause silly me forgot to install them, let's fix that with 
+
+pip3 install pillow
+pip3 install tcod
+
+Cool, now it runs! Let's play a bit... Okay seems everything works but my console is being flooded with:
+
+FutureWarning: Key constants have been replaced with enums.
+`tcod.event.KeySym.v` should be replaced with `tcod.event.KeySym.v`
+  elif key == tcod.event.KeySym.v:
+
+
+Easy fix, go to input_handlers.py and replace all instances of "tcod.event.KeySym." with "tcod.event.KeySym.". Problem solved.
+Oops a few more I missed:
+
+FutureWarning: tcod.console.Console is deprecated.
+Replace 'tcod.console.Console' with 'tcod.console.Console.Console'
+
+FutureWarning: Soon the 'tcod' module will no longer hold constants directly.
+Add 'import tcod' if you haven't already.
+Replace 'tcod.CENTER' with 'libtcodpy.CENTER'
+
+/Users/kisaczka/pycodee/tcod_tutorial_v2/setup_game.py:104: FutureWarning: Soon the 'tcod' module will no longer be an implicit reference to 'libtcodpy'.
+Add 'import tcod' if you haven't already.
+
+Let's just do everything they ask us to. Done.
